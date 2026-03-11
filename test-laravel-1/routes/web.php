@@ -12,9 +12,8 @@ Route::get('/display', function () {
         echo "$i"."<br>";
 });
 
-$courseList = ["php", "laravel", "mysql", "html", "css"];
-
-Route::get('/course', function () use ($courseList) {
+Route::get('/course', function () {
+    $courseList = ["php", "laravel", "mysql", "html", "css"];
     foreach ($courseList as $c) {
         echo $c . "<br>";
     }
@@ -22,5 +21,10 @@ Route::get('/course', function () use ($courseList) {
 
 //Req Routing
 Route::get('/user/{name}', function ($name) {
+    return "Hello $name";
+});
+
+//Optional Routing
+Route::get('/user/{name?}', function ($name = "Guest") {
     return "Hello $name";
 });
