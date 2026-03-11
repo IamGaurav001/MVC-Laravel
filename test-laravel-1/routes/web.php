@@ -28,3 +28,8 @@ Route::get('/user/{name}', function ($name) {
 Route::get('/user/{name?}', function ($name = "Guest") {
     return "Hello $name";
 });
+
+//Multi value Routing
+Route::get('/user/{name}/{id}', function ($name, $id) {
+    return "Hello $name, your id is $id";
+});
