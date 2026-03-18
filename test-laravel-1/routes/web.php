@@ -116,10 +116,11 @@ Route::view('/scai/hello/cse/web/block27', 'data')->name('e');
 */
 
 /*
-// create a constrauinnt routing in which the url would be student/details/y here y is the constraint any thing except y it will generate customised message u made a wrong entry 
-
-
+// create a constrauinnt routing in which the url would be student/details/y here y is the constraint any thing except y it will generate customised message u made a wrong entry `
 */
+
+
+/*
 
 Route::get('/developer/{name}', function ($name) {
     return "Developer Profile: $name";
@@ -182,4 +183,57 @@ Route::get('/student/details/{value}', function ($value) {
     } else {
         return "You made a wrong entry";
     }
+});
+
+*/
+
+
+
+// 18th Mar 
+
+//sharing static data globally with all views
+/*
+S1 -> create new view using cmd or manually
+S2 -> Create a corresponding route to view
+S3 -> Write any content in both views
+S4 -> open app folder under that app service provider file
+S5 -> Import Views in app service provider file 
+S6 -> Make use of views share in boot
+S7 -> use blade template syntax {{}} and pass the data to the view that u have taken in view Share in AppService Provider finally run ur code
+*/
+
+Route::view('/firstview', 'FirstView');
+Route::view('/firstview1', 'FirstView1');
+
+//sharing dynamic data globally with all views
+/*
+S1 -> create new view using cmd or manually
+S2 -> Create a corresponding route to view
+S3 -> Write content in both views
+S4 -> open app folder under that app service provider file
+S5 -> Import Views in app service provider file 
+S6 -> Make use of view share in boot
+
+
+*/
+
+Route::view('/secview', 'SecView');
+Route::view('/secview1', 'SecView1');
+
+
+// Attaching Headers
+Route::get('/adding-headers', function () {
+    return response("Headers are attached")
+        ->header('app-Name', 'basic/info')
+        ->header('Content-Type', 'text/plain')
+        ->header('File disposition', 'downloadable');
+});
+
+//JSON Response
+Route::get('/json-response', function () {
+    return response()->json([
+        'name' => 'Gaurav',
+        'age' => 21,
+        'sex' => "Male"
+    ]);
 });
