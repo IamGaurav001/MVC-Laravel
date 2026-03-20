@@ -237,3 +237,32 @@ Route::get('/json-response', function () {
         'sex' => "Male"
     ]);
 });
+
+//cookies in laravel
+Route::get('add-cookies', function (){
+    return response("Cookies are added")->cookie('name', 'Gaurav', 5);
+});
+
+//get cookie data
+Route::get('/get-cookie', function () {
+    $val = request()->cookie('name');
+    return "Cookie value is: $val";
+});
+
+//delete cookie info
+Route::get('/delete-cookie', function () {
+    return response("Gaya")->cookie('name', '', -1);
+});
+
+#Laravel Redirections
+Route::get('/old-url', function () {
+    return redirect('/new-url');
+});
+
+Route::get('/new-url', function () {
+    return "New URL";
+});
+//using back
+Route::get('/bad-url', function () {
+    return back();
+});
