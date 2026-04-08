@@ -65,3 +65,87 @@ Route::controller(MyDemoController::class)->group(function(){
     Route::get('/show', 'show');
     Route::get('/details/{id}', 'details');
 });
+
+//Adding constraints
+Route::controller(MyDemoController::class)->group(function(){
+    Route::get('/show', 'show');
+    Route::get('/details/{id}', 'details')->whereNumber('id');
+    // Route::get('/info/{id}', 'info')->whereAlpha('id');
+    Route::get('/info/{id}', 'info');
+});
+
+//php Ouput
+//blade template
+/*
+Route::get('223PO/{age}', function($age){
+
+    return view('practice',['age'=>$age]);
+
+    // $name = "Gaurav";
+    // var_dump($name);
+    // $names = ["Gaurav", "Rahul", "Sonia"];
+    // print_r($names);
+    
+});
+*/
+
+Route::get('223PO/{age}', function($age){
+
+    return view('practice',compact('age'));
+
+    // $name = "Gaurav";
+    // var_dump($name);
+    // $names = ["Gaurav", "Rahul", "Sonia"];
+    // print_r($names);
+    
+});
+
+//domain routing
+//konse link se chalega -> localhost:8000/admin.localhost/dashboard
+Route::domain('admin.localhost')->group(function(){
+    Route::get('/dashboard', function(){
+        return "Admin Dashboard";
+    });
+    Route::get('/User', function(){
+        return "User Dashboard";
+    });
+});
+
+// Named route using controller
+Route::get('/practice1', function(){
+    return view('practice1');
+});
+Route::get('/display/mydict', [MyDemoController::class, 'display'])->name('myinfo');
+
+//generation shortcuts 
+
+//Create One parent layout called MyParent inside that u have to create a blade tempate called Home.blade.php inside taht template there will be navigation like home about contact profile there must be one img present over tehre in landscape format and add footer section which  conatents copyright and year details now u have to craete three views in teh view folder about, contact and profile in that views u have to add the deatils in the correspoding color and iuncllude the parent content only two pages of ur choice 
+//Give me steps
+
+// Route::view('/', 'Home');
+// Route::view('/about', 'about');
+// Route::view('/contact', 'contact');
+// Route::view('/profile', 'profile');
+
+//Create a Middleware globally  there u need to authrise url with token 123a if u are Authriesed then a new view will be return w=hich will display ur picture other wise it will showcase custom error message ur Outsider
+// Route::get('/', function () {
+//     return view('success');
+// });
+
+// Method	Output
+// url()->current()	http://127.0.0.1:8000/generation
+
+// url()->full()	http://127.0.0.1:8000/generation?name=arnav&age=21
+
+// request()->url()	http://127.0.0.1:8000/generation
+
+// request()->fullUrl()	http://127.0.0.1:8000/generation?name=arnav&age=21
+
+Route::get('/generation', function(){
+    return view('layouts.generation');
+});
+
+
+//Forst Way -> URL generation (generating frameworks) 
+Route::get('/index', [MyDemoController::class, 'index']);
+Route::get('/second', [MyDemoController::class, 'second']);

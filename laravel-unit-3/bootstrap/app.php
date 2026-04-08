@@ -5,6 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\globalMiddleware;
 use App\Http\Middleware\CmMiddleware;
+use App\Http\Middleware\CheckToken;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -26,6 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // $middleware->alias([
         //     'checkingage' => \App\Http\Middleware\Middleware::class,
         // ]);
+
+        // $middleware->append([
+        //     'checktoken' => CheckToken::class,
+        // ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
